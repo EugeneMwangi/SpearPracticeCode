@@ -25,7 +25,7 @@ class MHZ19_uart
 		virtual ~MHZ19_uart();
 
 	protected:
-		void writeCommand(uint8_t *cmd, uint8_t *response);
+		void writeCommand(uint8_t *cmd, uint8_t *response = NULL);
 
     private:
         //Define data variables to hold the 8 byte commands

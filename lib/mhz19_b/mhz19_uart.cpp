@@ -72,7 +72,7 @@ int MHZ19_uart::getPPM()
  * @param response holds the response of the sensor, if required, otherwise set 
  *        to NULL.
 */
-void MHZ19_uart::writeCommand(uint8_t *cmd, uint8_t *response = NULL)
+void MHZ19_uart::writeCommand(uint8_t *cmd, uint8_t *response)
 {
     //Send the first 8 bits of the command with the size of the array
     Serial1.write(cmd, REQUEST_CNT);
