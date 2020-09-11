@@ -23,6 +23,7 @@ class MHZ19_uart
 		void setAutoCalibration(boolean autocalib);
 		void calibrateZero();
 		void calibrateSpan(int ppm);
+		virtual ~MHZ19_uart();
 
 	protected:
 		void writeCommand(uint8_t *cmd);
