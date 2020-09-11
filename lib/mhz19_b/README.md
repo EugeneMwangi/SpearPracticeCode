@@ -19,3 +19,16 @@ Caution: Forbid sending this command in other environment except above.
 Put the module in 2000ppm co2 gas, stability for at least 20 min. If the span value is 2000ppm, then HIGH byte(4th byte in the array) = 2000/256, LOW byte(5th byte in the array) = 2000 % 256. Then send the command.
 Caution: Zero calibration should be done before span calibration. It is recommended to use 2000ppm as the SPAN calibration value. If lower value as the span value is needed, choose value above 1000ppm
 
+## Calculating the CO2 Value
+
+The getSerialData is used to obtain the co2 value. This value is the third(HIGH level output) and fourth(LOW level value) byte of the response array from the sensor.
+The following formula is used:
+    > HIGH * 256 + LOW
+
+## Calculating for Checksum Value
+
+* Add Byte 1 to Byte 7 of the command or response array.
+* Subtract the resulting sum from 0xff i.e. 
+    > 0xff - sum
+* Add1 to the new value i.e. 
+    > (0xff-sum) + 0x01
