@@ -23,7 +23,8 @@ Caution: Zero calibration should be done before span calibration. It is recommen
 
 The getSerialData is used to obtain the co2 value. This value is the third(HIGH level output) and fourth(LOW level value) byte of the response array from the sensor.
 The following formula is used:
-    > HIGH * 256 + LOW
+> HIGH * 256 + LOW
+
 
 ## Calculating for Checksum Value
 
