@@ -25,10 +25,7 @@ MHZ19_uart::~MHZ19_uart()
 
 /**
  * @brief If true, this function sets the sensor to auto calibrate itself 
- *        in every 24 hrs after being powered on. The default setting is 
- *        true. It should be set to false if the sensor is to be used in
- *        a greenhouse. In such a case, hardware or command calibration 
- *        should be implemented.
+ *        in every 24 hrs after being powered on. 
  * @param autocalib: a boolean that determines if auto calibration will be s
  *                   set or not
 */
@@ -39,8 +36,6 @@ void MHZ19_uart::setAutoCalibration(boolean autocalib)
 
 /**
  * @brief Sends a command to the sensor to erform zero calibration.
- *        The module should be placed in 400pm standard CO2 gas or 
- *        clean outdoor environment for at least 20 min.
 */
 void MHZ19_uart::calibrateZero()
 {
