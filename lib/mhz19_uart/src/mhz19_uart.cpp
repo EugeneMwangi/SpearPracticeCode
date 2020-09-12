@@ -11,23 +11,6 @@
 #define WAIT_READ_DELAY	10
 
 /**
- * @brief The constructor initializes the uart serial communication
- */
-MHZ19_uart::MHZ19_uart()
-{
-    Serial1.begin(9600);
-}
-
-/**
- * @brief The destructor can be used to delete any memory in heap once 
- *        an object is out of scope. It is a virtual destructor, which 
- *        means that both base and derived class objects with memory in 
- *        the heap will be deleted, therefore avoiding memory leak.
-*/
-MHZ19_uart::~MHZ19_uart()
-{}
-
-/**
  * @brief If true, this function sets the sensor to auto calibrate itself 
  *        in every 24 hrs after being powered on. 
  * @param autocalib: a boolean that determines if auto calibration will be 
@@ -74,6 +57,8 @@ int MHZ19_uart::getPPM()
 */
 void MHZ19_uart::writeCommand(uint8_t *cmd, uint8_t *response)
 {
+    //Initialize the hardware serial. Set baud to 9600(arbitrary?)
+    Serial1.begin(9600);
     //Send the first 8 bits of the command with the size of the array
     Serial1.write(cmd, REQUEST_CNT);
 

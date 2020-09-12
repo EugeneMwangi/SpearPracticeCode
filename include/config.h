@@ -6,6 +6,6 @@
 #ifndef _CONFIG_H_
 #define _CONFIG_H_
 
-#define CO2_SENSOR_ENABLED          0
+#define CO2_SENSOR_ENABLED          1
 #define ZERO_CALIBRATION_ENABLED    0
 #endif // _CONFIG_H_
