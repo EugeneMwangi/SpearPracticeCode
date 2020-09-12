@@ -12,9 +12,9 @@
  * @param pwrpin: The pwr line of the ec_5 is connected to this pin
  * @pa
 */
-typedef struct ec_5ConnectionPins
-{
-    int pwrPin;
-    int inputPin;
-}ec5ConnectionPins;
+typedef int ec5Input;
+
+void init( ec5Input inputPin,  ec5Input pwrPin = 0);
+float ec5VoltageReading();
+float ec5VWCReading();
 #endif // EC_5_H_
