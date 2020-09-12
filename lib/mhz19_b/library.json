@@ -1,0 +1,15 @@
+{
+"name": "mhz19_uart",
+  "version": "0.0.1",
+  "description": "Arduino library for operating the MH-Z19 CO2 sensor in ATSAMD Feather M0",
+  "authors":
+  [
+    {
+      "name": "eugene",
+      "maintainer": true
+    }
+  ],
+  "license": "MIT",
+  "frameworks": "*",
+  "platforms": "*"
+}
