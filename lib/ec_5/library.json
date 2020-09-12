@@ -1,0 +1,16 @@
+{
+    "name": "ec_5",
+      "version": "0.0.1",
+      "description": "Arduino library for operating the EC-5 Soil Moisture Sensor in ATSAMD Feather M0",
+      "keywords": "soil, moisture,ec-5",
+      "authors":
+      [
+        {
+          "name": "eugene",
+          "maintainer": true
+        }
+      ],
+      "license": "MIT",
+      "frameworks": "*",
+      "platforms": "*"
+    }
