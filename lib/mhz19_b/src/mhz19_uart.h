@@ -7,7 +7,7 @@
 #ifndef MHZ19_UART_H_
 #define MHZ19_UART_H_
 
-#include "Arduino.h"
+#include <Arduino.h>
 
 #define REQUEST_CNT          8 //Number of bytes sent from the controller to the mhz19 for any command
 #define RESPONSE_CNT	     9 //Number of bytes received from sensor.

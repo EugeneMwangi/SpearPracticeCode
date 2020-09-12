@@ -5,7 +5,7 @@
 */
 
 #include "mhz19_uart.h"
-#include "Arduino.h"
+#include <Arduino.h>
 
 #define WAIT_READ_TIMES	100
 #define WAIT_READ_DELAY	10

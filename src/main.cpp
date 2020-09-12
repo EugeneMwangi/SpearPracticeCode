@@ -2,11 +2,12 @@
 #include "mhz19_uart.h"
 #include "config.h"
 
+
 #if CO2_SENSOR_ENABLED
 //Declare an object for the mh-z19 co2 sensor
 MHZ19_uart mhz19;
 #endif // CO2_SENSOR_ENABLED
-
+MHZ19_uart mhz19;
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
