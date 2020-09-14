@@ -56,11 +56,11 @@ float ec5VoltageReading()
   {
     float avg = ec5VoltageReading();  
     /*      
-     * Using a 10 bit ADC, the formula used is:
-     *      VWC = 0.0014*(ADC output) - 0.4697
+     * Using a 12 bit ADC, the formula used is:
+     *      VWC = 0.0014 ADC output 0.4697
      *      link: https://www.researchgate.net/publication/320668407_An_Arduino-Based_Wireless_Sensor_Network_for_Soil_Moisture_Monitoring_Using_Decagon_EC-5_Sensors
      */
-    float vwcValue = (0.0041 * avg) - 0.4895;
+    float vwcValue = (0.0014 * avg) - 0.4697;
     Serial.print("VWC Value: "); Serial.println(vwcValue);
     return vwcValue;
   }
