@@ -2,6 +2,7 @@
 #include "mhz19_uart.h"
 #include "config.h"
 #include "ec_5.h"
+#include "sht1x.h"
 
 #if CO2_ENABLED
   //Declare an object for the mh-z19 co2 sensor
@@ -10,6 +11,11 @@
 #if EC5_ENABLED
   #define EC5_INPUT  A0
 #endif // EC5_ENABLED
+#if SHT1X_ENABLED
+  #define SHT_SCK     10
+  #define SHT_SDA     12
+  Sht1x sht(SHT_SDA, SHT_SCK);
+#endif // SHT1X_ENABLED
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
@@ -36,4 +42,7 @@ void loop() {
   #if EC5_ENABLED
     float VWCReading = ec5VWCReading();
   #endif // EC5_ENABLED
+  #if SHT1X_ENABLED
+    float shtTemperature = sht.readTemperatureC();
+  #endif // SHT1X_ENABLED
 }

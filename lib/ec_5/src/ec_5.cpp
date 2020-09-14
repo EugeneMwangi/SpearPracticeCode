@@ -39,7 +39,7 @@ float ec5VoltageReading()
     digitalWrite(pwrPin, LOW);
     for(int x:array)
     {
-        Serial.print("x: "); Serial.println(x);
+        // Serial.print("x: "); Serial.println(x);
         sum+=x;   
     }
     Serial.print("sum: "); Serial.println(sum);

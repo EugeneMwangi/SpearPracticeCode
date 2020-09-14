@@ -9,4 +9,5 @@
 #define CO2_ENABLED                     1
 #define ZERO_CALIBRATION_ENABLED        0
 #define EC5_ENABLED                     1
+#define SHT1X_ENABLED                   1
 #endif // _CONFIG_H_

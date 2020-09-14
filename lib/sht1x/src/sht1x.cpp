@@ -40,7 +40,7 @@ float Sht1x::readTemperatureC()
     if((_ackFlag1 != true) && (_ackFlag2 != true))
     {
         Serial.println("Error sending temperature command");
-        return;
+        return -1.0f;
     }
     waitForMeasurement();
     _val = getData();
@@ -73,7 +73,7 @@ float Sht1x::readHumidity()
     if((_ackFlag1 != true) && (_ackFlag2 != true))
     {
         Serial.println("Error sending humidity command");
-        return;
+        return -1.0f;
     }
     waitForMeasurement();
     _val = getData();         
@@ -88,6 +88,8 @@ float Sht1x::readHumidity()
 
     return _correctedHumidity;
 }
+
+/* ================================ Private Methods ============================== */
 
 /**
  * @brief Lowers DATA line while SCK is high, followed by a low pulse 
@@ -172,7 +174,7 @@ int Sht1x::getData()
         }
         pinMode(_dataPin, OUTPUT);
         digitalWrite(_dataPin, HIGH);
-        if(i=1)break;
+        if(i==1)break;
         digitalWrite(_dataPin, LOW);
         digitalWrite(_clockPin, HIGH);
         digitalWrite(_clockPin, LOW);
