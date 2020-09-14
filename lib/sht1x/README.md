@@ -10,4 +10,8 @@ After power up the sensor needs 11ms to get to Sleep State. No commands must be 
 * Send the command.
 * Acknowledgement of reception of command by the sensor.
 ### Measuring RH and T
-* Issue measurement command[ref](#sending-a-command)
+* Issue measurement command [(ref)](#sending-a-command)
+* Wait 20/80/320 ms for a 8/12/14 bit measurement.
+* Sht1x pulls data line low and enters idle mode to signal measurement comletion.
+* Microcontroller reads the data.
+* MCU sends acknowledgement bit.
