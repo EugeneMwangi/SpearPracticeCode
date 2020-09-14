@@ -12,7 +12,7 @@
 typedef int ec5Pins;
 ec5Pins inputPin;
 ec5Pins pwrPin;
-void ec5init(ec5Pins input,  ec5Pins pwr=0);
+void ec5Init(ec5Pins input,  ec5Pins pwr=0);
 float ec5VoltageReading();
 float ec5VWCReading();
 #endif // EC_5_H_

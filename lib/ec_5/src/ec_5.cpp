@@ -11,7 +11,7 @@
  * @param inputPin: analog pin connected to the ec-5's output.
  * @param pwrPin: digital pin connected to ec-5 pwr pin. If not connected, set to 0
 */
-void ec5init(ec5Pins input, ec5Pins pwr)
+void ec5Init(ec5Pins input, ec5Pins pwr)
 {
     inputPin = input;
     pwrPin = pwr;
