@@ -44,5 +44,6 @@ void loop() {
   #endif // EC5_ENABLED
   #if SHT1X_ENABLED
     float shtTemperature = sht.readTemperatureC();
+    Serial.print("SHT1x temperature reading: "); Serial.println(shtTemperature);
   #endif // SHT1X_ENABLED
 }
