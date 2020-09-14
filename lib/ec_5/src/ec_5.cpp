@@ -6,6 +6,9 @@
 #include "ec_5.h"
 #include <Arduino.h>
 
+ec5Pins inputPin;
+ec5Pins pwrPin;
+
 /**
  * @brief Function initializes the input pins of the EC-5 sensor
  * @param inputPin: analog pin connected to the ec-5's output.

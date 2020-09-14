@@ -7,9 +7,8 @@
   //Declare an object for the mh-z19 co2 sensor
   MHZ19_uart mhz19;
 #endif // CO2_ENABLED
-// MHZ19_uart mhz19;
 #if EC5_ENABLED
-  const ec5Pins ec5Input = A0;
+  #define EC5_INPUT  A0
 #endif // EC5_ENABLED
 void setup() {
   // put your setup code here, to run once:
@@ -23,7 +22,7 @@ void setup() {
     #endif // ZERO_CALIBRATION_ENABLED
   #endif // CO2_ENABLED
   #if EC5_ENABLED
-    ec5Init(ec5Input);//Pass the analog input pin. Pwr pin is optional
+    ec5Init(EC5_INPUT);//Pass the analog input pin. Pwr pin is optional
   #endif // EC5_ENABLED
 }
 

@@ -10,8 +10,7 @@
 #include <Arduino.h>
 
 typedef int ec5Pins;
-ec5Pins inputPin;
-ec5Pins pwrPin;
+
 void ec5Init(ec5Pins input,  ec5Pins pwr=0);
 float ec5VoltageReading();
 float ec5VWCReading();
