@@ -42,7 +42,7 @@ float ec5VoltageReading()
         // Serial.print("x: "); Serial.println(x);
         sum+=x;   
     }
-    Serial.print("sum: "); Serial.println(sum);
+    // Serial.print("sum: "); Serial.println(sum);
     avg = (float)sum / 10;
     Serial.print("avg: "); Serial.println(avg); 
     return avg;   
