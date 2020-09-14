@@ -10,4 +10,4 @@ After power up the sensor needs 11ms to get to Sleep State. No commands must be 
 * Send the command.
 * Acknowledgement of reception of command by the sensor.
 ### Measuring RH and T
-* Issue measurement command
+* Issue measurement command[ref](#sending-a-command)
