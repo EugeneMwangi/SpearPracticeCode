@@ -8,8 +8,9 @@
   MHZ19_uart mhz19;
 #endif // CO2_ENABLED
 // MHZ19_uart mhz19;
-const ec5Pins ec5Input = A0;
-
+#if EC5_ENABLED
+  const ec5Pins ec5Input = A0;
+#endif // EC5_ENABLED
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
