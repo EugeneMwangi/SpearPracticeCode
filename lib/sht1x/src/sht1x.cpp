@@ -94,35 +94,7 @@ float Sht1x::readHumidity()
 }
 
 /* ================================ Private Methods ============================== */
-#if SHT1X_RUN
-    /**
-     * @brief Obtains data from the sensor
-     * @param _numBits: number of bits to read
-     * @retval Returns int value
-    */
-    int Sht1x::shiftIn(int _numBits)
-    {
-        int ret = 0;
-        for(int i = 0; i<_numBits; ++i)
-        {
-            digitalWrite(_clockPin, HIGH);
-            delay(10);  // I don't know why I need this, but without it I don't get my 8 lsb of temp
-            ret = ret*2 + digitalRead(_dataPin);
-            digitalWrite(_clockPin, LOW);       
-        }
-        return(ret);
-    }
-    void Sht1x::skipCRCCheck()
-    {
-        // Skip acknowledge to end trans (no CRC)
-        pinMode(_dataPin, OUTPUT);
-        pinMode(_clockPin, OUTPUT);
 
-        digitalWrite(_dataPin, HIGH);
-        digitalWrite(_clockPin, HIGH);
-        digitalWrite(_clockPin, LOW);       
-    }
-#endif // SHT1X_RUN
 /**
  * @brief Lowers DATA line while SCK is high, followed by a low pulse 
  *        on SCK and raising DATA again while SCK is still high.
@@ -173,11 +145,12 @@ void Sht1x::waitForMeasurement()
 {
     int ack;
     pinMode(_dataPin, INPUT);
-    for(int i=0; i< 100;++i)
+    while(1)
     {
         delay(10);
         ack = digitalRead(_dataPin);
         if(ack == LOW)break;
+        yield();
     }
 }
 /**
@@ -238,3 +211,35 @@ int Sht1x::getData()
         return value_run;
     #endif // SHT1X_RUN
 }
+#if SHT1X_RUN
+    /**
+     * @brief Obtains data from the sensor
+     * @param _numBits: number of bits to read
+     * @retval Returns int value
+    */
+    int Sht1x::shiftIn(int _numBits)
+    {
+        int ret = 0;
+        for(int i = 0; i<_numBits; ++i)
+        {
+            digitalWrite(_clockPin, HIGH);
+            delay(10);  // I don't know why I need this, but without it I don't get my 8 lsb of temp
+            ret = ret*2 + digitalRead(_dataPin);
+            digitalWrite(_clockPin, LOW);       
+        }
+        return(ret);
+    }
+    /**
+     * @brief Skips CRC Check
+    */
+    void Sht1x::skipCRCCheck()
+    {
+        // Skip acknowledge to end trans (no CRC)
+        pinMode(_dataPin, OUTPUT);
+        pinMode(_clockPin, OUTPUT);
+
+        digitalWrite(_dataPin, HIGH);
+        digitalWrite(_clockPin, HIGH);
+        digitalWrite(_clockPin, LOW);       
+    }
+#endif // SHT1X_RUN
