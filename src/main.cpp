@@ -41,6 +41,7 @@ void loop() {
   #endif // CO2_ENABLED
   #if EC5_ENABLED
     float VWCReading = ec5VWCReading();
+    Serial.print("VWC Value: "); Serial.println(VWCReading);
   #endif // EC5_ENABLED
   #if SHT1X_ENABLED
     float shtTemperature = sht.readTemperatureC();

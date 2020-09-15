@@ -44,7 +44,7 @@ float ec5VoltageReading()
     }
     // Serial.print("sum: "); Serial.println(sum);
     avg = (float)sum / 10;
-    Serial.print("avg: "); Serial.println(avg); 
+    // Serial.print("avg: "); Serial.println(avg); 
     return avg;   
 }
 
@@ -61,6 +61,6 @@ float ec5VoltageReading()
      *      link: https://www.researchgate.net/publication/320668407_An_Arduino-Based_Wireless_Sensor_Network_for_Soil_Moisture_Monitoring_Using_Decagon_EC-5_Sensors
      */
     float vwcValue = (0.0014 * avg) - 0.4697;
-    Serial.print("VWC Value: "); Serial.println(vwcValue);
+    // Serial.print("VWC Value: "); Serial.println(vwcValue);
     return vwcValue;
   }
