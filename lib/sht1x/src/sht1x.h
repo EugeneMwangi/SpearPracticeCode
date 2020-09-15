@@ -23,6 +23,8 @@
 #define RH_MEASUREMENT_RESOLUTION           12  // Default measurement resolution for humidity
 #define TEMP_MEASUREMENT_RESOLUTION         14  // Default measurement resolution for temperature
 
+#define SHT1X_DEBUG                         0
+#define SHT1X_RUN                           1
 class Sht1x
 {
     public:
@@ -38,7 +40,10 @@ class Sht1x
         void sendCommand(uint8_t cmd);
         void waitForMeasurement();
         int getData();
-        // void skipCRCCheck();
         void transmissionStartSequence();
+        #if SHT1X_RUN
+            int shiftIn(int _numBits);
+            void skipCRCCheck();
+        #endif // SHT1X_RUN
 };
 #endif // SHT1X_H_
