@@ -11,6 +11,22 @@
 #define WAIT_READ_DELAY	10
 
 /**
+ * @brief Initializes the Serial1 communication
+ * @param * stream: pointer to Serial1 
+*/
+MHZ19_uart::MHZ19_uart(Stream * stream)
+{
+    _serial = stream;
+}
+/**
+ * @brief Initializes _serial to nullptr
+*/
+MHZ19_uart::~MHZ19_uart()
+{
+    _serial = nullptr;
+}
+
+/**
  * @brief If true, this function sets the sensor to auto calibrate itself 
  *        in every 24 hrs after being powered on. 
  * @param autocalib: a boolean that determines if auto calibration will be 
@@ -58,24 +74,25 @@ int MHZ19_uart::getPPM()
 void MHZ19_uart::writeCommand(uint8_t *cmd, uint8_t *response)
 {
     //Initialize the hardware serial. Set baud to 9600(arbitrary?)
-    Serial1.begin(9600);
+    // _serial->begin(9600);
+    while(_serial->available()>0){_serial->read();}
     //Send the first 8 bits of the command with the size of the array
-    Serial1.write(cmd, REQUEST_CNT);
+    _serial->write(cmd, REQUEST_CNT);
 
     //Send the checksum value
-    Serial1.write(getChecksum(cmd));
+    _serial->write(getChecksum(cmd));
 
     // wait until TX buffer is empty then flush the Tx buffer
-    Serial1.flush();
+    _serial->flush();
 
     if(response !=NULL)
     {
-        int i = 0;
-        while(Serial1.available()<=0)
+        unsigned long time = millis();
+        while(_serial->available()<=0)
         {
-            if(++i> WAIT_READ_TIMES)
+            if(millis() - time >= SERIAL_TIMEOUT)
             {
-                Serial.println("error: can't get MH-Z19 response");
+               Serial.println("error: can't get MH-Z19 response");
                 return;
             }
             /*
@@ -86,7 +103,7 @@ void MHZ19_uart::writeCommand(uint8_t *cmd, uint8_t *response)
             yield();
         }
         //Read the response from the sensor
-        Serial1.readBytes(response, RESPONSE_CNT);
+        _serial->readBytes(response, RESPONSE_CNT);
     }
 }
 
@@ -122,7 +139,7 @@ int MHZ19_uart::getSerialData()
 uint8_t MHZ19_uart::getChecksum(uint8_t cmd[])
 {
     uint8_t sum = 0x00;
-    for(int i = 0; i < REQUEST_CNT; i++)
+    for(int i = 1; i < REQUEST_CNT; i++)
     {
         sum+=cmd[i];
     }

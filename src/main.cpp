@@ -6,7 +6,7 @@
 
 #if CO2_ENABLED
   //Declare an object for the mh-z19 co2 sensor
-  MHZ19_uart mhz19;
+  MHZ19_uart mhz19(&Serial1);
 #endif // CO2_ENABLED
 #if EC5_ENABLED
   #define EC5_INPUT  A0
@@ -18,8 +18,8 @@
 #endif // SHT1X_ENABLED
 void setup() {
   // put your setup code here, to run once:
-  Serial.begin(9600);
-  MHZ19_uart mhz19;
+  Serial.begin(115200);
+  Serial1.begin(9600);
   #if CO2_ENABLED
     //set auto calibration off
     mhz19.setAutoCalibration(false);
@@ -46,4 +46,5 @@ void loop() {
     float shtTemperature = sht.readTemperatureC();
     Serial.print("SHT1x temperature reading: "); Serial.println(shtTemperature);
   #endif // SHT1X_ENABLED
+  delay(5000);
 }
