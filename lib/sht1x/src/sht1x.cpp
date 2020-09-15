@@ -183,13 +183,14 @@ int Sht1x::getData()
         }
         digitalWrite(_clockPin, HIGH);
         digitalWrite(_clockPin, LOW);
-        for(int i = 0; i< 2; i++)
-        {
-            for(int j = 0; j<8;j++)
-            {
-                value_debug = value_debug | (data[i]<<(7-j));
-            }
-        }
+        // for(int i = 0; i< 2; i++)
+        // {
+        //     for(int j = 0; j<8;j++)
+        //     {
+        //         value_debug = value_debug | (data[i]<<(7-j));
+        //     }
+        // }
+        value_debug = data[0]*256 + data[1];
         return value_debug;
     #endif // SHT1X_DEBUG
     #if SHT1X_RUN

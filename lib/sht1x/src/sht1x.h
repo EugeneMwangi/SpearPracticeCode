@@ -23,8 +23,8 @@
 #define RH_MEASUREMENT_RESOLUTION           12  // Default measurement resolution for humidity
 #define TEMP_MEASUREMENT_RESOLUTION         14  // Default measurement resolution for temperature
 
-#define SHT1X_DEBUG                         0
-#define SHT1X_RUN                           1
+#define SHT1X_DEBUG                         1
+#define SHT1X_RUN                           0
 class Sht1x
 {
     public:
