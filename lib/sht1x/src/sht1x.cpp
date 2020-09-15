@@ -164,7 +164,7 @@ int Sht1x::getData()
 
     #if SHT1X_DEBUG
         int value_debug = 0;
-        uint8_t data[2] = {0};
+        byte data[2] = {0};
         for(int i=0; i<2; ++i)
         {
             for(int j=0; j<8;++j)
@@ -190,7 +190,9 @@ int Sht1x::getData()
         //         value_debug = value_debug | (data[i]<<(7-j));
         //     }
         // }
-        value_debug = static_cast<int>(data[0])*256 + static_cast<int>(data[1]);
+        int high = static_cast<int>(data[0]);
+        int low = static_cast<int>(data[1]);
+        value_debug = high*256 + low;
         return value_debug;
     #endif // SHT1X_DEBUG
     #if SHT1X_RUN
