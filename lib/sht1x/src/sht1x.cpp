@@ -190,7 +190,7 @@ int Sht1x::getData()
         //         value_debug = value_debug | (data[i]<<(7-j));
         //     }
         // }
-        value_debug = data[0]*256 + data[1];
+        value_debug = static_cast<int>(data[0])*256 + static_cast<int>(data[1]);
         return value_debug;
     #endif // SHT1X_DEBUG
     #if SHT1X_RUN
