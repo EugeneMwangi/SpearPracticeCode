@@ -12,8 +12,8 @@
   #define EC5_INPUT  A0
 #endif // EC5_ENABLED
 #if SHT1X_ENABLED
-  #define SHT_SCK     10
-  #define SHT_SDA     12
+  #define SHT_SCK     12
+  #define SHT_SDA     10
   Sht1x sht(SHT_SDA, SHT_SCK);
 #endif // SHT1X_ENABLED
 void setup() {
