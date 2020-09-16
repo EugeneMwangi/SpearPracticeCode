@@ -12,44 +12,46 @@
 #define BH1750_H_
 
 #include <Arduino.h>
-// #include "Wire.h"
+#include "Wire.h"
 
 //Define the commands
-#define POWER_DOWN_CMD                              0x00U
-#define POWER_ON_CMD                                0x01U
-#define RESET_CMD                                   0x07U
-#define CONTINUOUSLY_H_RESOLUTION_MODE_CMD          0x10U
-#define CONTINUOUSLY_H_RESOLUTION_MODE2_CMD         0x11U
-#define CONTINUOUSLY_L_RESOLUTION_MODE_CMD          0x13U
-#define ONE_TIME_H_RESOLUTION_MODE_CMD              0x20U
-#define ONE_TIME_H_RESOLUTION_MODE2_CMD             0x21U
-#define ONE_TIME_L_RESOLUTION_MODE_CMD              0x23U
+#define POWER_DOWN_CMD                              0x00
+#define POWER_ON_CMD                                0x01
+#define RESET_CMD                                   0x07
 
-#define _DELAY_MS_                                   120
+#define DEFAULT_MTREG                               69
 
 /**
  * @brief Defines the different applicable modes
 */
 typedef enum mode 
 {
-    CONTINUOUSLY_H_RESOLUTION_MODE,
-    CONTINUOUSLY_H_RESOLUTION_MODE2,
-    CONTINUOUSLY_L_RESOLUTION_MODE,
-    ONE_TIME_H_RESOLUTION_MODE,
-    ONE_TIME_H_RESOLUTION_MODE2,
-    ONE_TIME_L_RESOLUTION_MODE
+    UNCONFIGURED,
+    CONTINUOUSLY_H_RESOLUTION_MODE = 0x10,
+    CONTINUOUSLY_H_RESOLUTION_MODE2 = 0x11,
+    CONTINUOUSLY_L_RESOLUTION_MODE = 0x13,
+    ONE_TIME_H_RESOLUTION_MODE = 0x20,
+    ONE_TIME_H_RESOLUTION_MODE2 = 0x21,
+    ONE_TIME_L_RESOLUTION_MODE = 0x23
 }Mode;
 
 class BH1750
 {
     public:
-        BH1750(Mode mode, byte addr);
-        float readLuxValue();
+        BH1750(TwoWire *i2c,byte addr = 0x23);
+        bool begin(Mode mode);
+        float readLuxValue(bool maxWait = false);
+        bool setMTReg(byte mTReg);
+        ~BH1750();
 
     private:
-        Mode _mode;
+        Mode _mode = UNCONFIGURED;
         byte _addr;
-        void writeCommand();
-        void readData(byte *data);
+        byte _mTReg = (byte)DEFAULT_MTREG;
+        const float _cvtVal = 1.2f;
+        TwoWire* _i2c = nullptr;
+        byte writeCommand(byte cmd);
+        void readData(unsigned int *data);
+        void delayPeriod(bool maxWait);
 };
 #endif // BH1750_H_
