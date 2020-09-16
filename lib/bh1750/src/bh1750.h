@@ -21,6 +21,8 @@
 
 #define DEFAULT_MTREG                               69
 
+#define BH1750_DEBUG                                0
+
 /**
  * @brief Defines the different applicable modes
 */

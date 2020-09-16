@@ -188,7 +188,7 @@ float BH1750::readLuxValue(bool maxWait)
         // Print converted value if debug enabled
         #if BH1750_DEBUG
         Serial.print(F("[BH1750] Converted float value: "));
-        Serial.println(level);
+        Serial.println(luxValue);
         #endif // BH1750_DEBUG        
     }
 
